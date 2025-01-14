@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /springboot
+# mybatis:
+#   type-aliases-package: cn.ivfzhou.java.springboot.bean
+#   config-location: classpath:mybatis-config.xml
+spring:
+  application:
+    name: springboot
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db_springboot
+    username: root
+    password: 123456
+    driverClassName: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+    username:
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1
+  thymeleaf:
+    mode: HTML # LEGACYHTML5
+    encoding: UTF-8
+    cache: false

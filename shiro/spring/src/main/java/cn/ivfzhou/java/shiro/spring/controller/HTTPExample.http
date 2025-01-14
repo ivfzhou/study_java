@@ -1,0 +1,12 @@
+### 1
+POST http://127.0.0.1:8080/shiro/login
+Content-Type: application/x-www-form-urlencoded
+
+username=ivfzhou&password=123456
+
+### 2
+POST http://127.0.0.1:8080/shiro/info
+
+
+### 3
+POST http://127.0.0.1:8080/shiro/updateUser

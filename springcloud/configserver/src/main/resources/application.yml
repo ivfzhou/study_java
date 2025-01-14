@@ -1,0 +1,24 @@
+server:
+  port: 40000
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:config/
+        #git:
+        #  uri: https://www.gitee.com/ivfzhou/xxx.git
+  profiles:
+    active: native
+  rabbitmq: # 连接rabbitmq作为消息总线的消息中间件
+    host: 127.0.0.1
+    username: guest
+    password: guest
+    port: 5672
+management: # 暴露所有节点（包括bus-refresh）。curl -X GET http://127.0.0.1:40000/actuator/bus-refresh/bus:30001
+  endpoints:
+    web:
+      exposure:
+        include: "*"
