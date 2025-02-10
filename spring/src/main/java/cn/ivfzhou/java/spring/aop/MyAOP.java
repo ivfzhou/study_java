@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 //@Component
 @Aspect
 public class MyAOP {
-
+    
+    // 第一个 .* 表示包下所有类，第二个 .* 表示所有方法，(..) 表示任意数量和类型的参数。
+    // a.b.c..，表示包下任意数量的子包。
+    // a.b.*.c，其中 * 匹配单个包。
+    // @annotation(a.b.c)，匹配注解类。
     @Pointcut("execution(* cn.ivfzhou.java.spring.aop.*.*(..))")
     public void cut() {
     }
