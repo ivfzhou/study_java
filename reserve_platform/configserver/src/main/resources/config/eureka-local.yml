@@ -1,4 +1,0 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://ivfzhou-ubuntu:10000/eureka

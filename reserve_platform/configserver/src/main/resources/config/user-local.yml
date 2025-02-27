@@ -1,5 +1,0 @@
-server:
-  port: 20008
-spring:
-  application:
-    name: micro-user

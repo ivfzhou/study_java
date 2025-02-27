@@ -1,5 +1,0 @@
-server:
-  port: 20003
-spring:
-  application:
-    name: micro-hotel
