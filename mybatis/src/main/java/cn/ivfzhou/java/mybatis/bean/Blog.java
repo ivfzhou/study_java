@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.mybatis.bean;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.type.Alias;
-
 import java.io.Serializable;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.type.Alias;
 
 // 别名。同 xml 中的 typeAlias。
 @Alias("blog")

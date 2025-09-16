@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.springcloud.zuulrouter.filter;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class ZuulFilter extends com.netflix.zuul.ZuulFilter {

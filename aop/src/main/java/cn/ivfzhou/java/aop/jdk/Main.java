@@ -10,7 +10,7 @@ public class Main {
                         System.out.println("begin");
                         Object invoke = method.invoke(target, args1);
                         System.out.println("end");
-                        return new StringBuilder((String)invoke).reverse().toString();
+                        return new StringBuilder((String) invoke).reverse().toString();
                     } else {
                         System.err.println("no matching method");
                         return method.invoke(target, args1);

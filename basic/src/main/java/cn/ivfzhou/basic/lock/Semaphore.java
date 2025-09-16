@@ -1,4 +1,4 @@
-package cn.ivfzhou.other.lock;
+package cn.ivfzhou.basic.lock;
 
 public class Semaphore {
 

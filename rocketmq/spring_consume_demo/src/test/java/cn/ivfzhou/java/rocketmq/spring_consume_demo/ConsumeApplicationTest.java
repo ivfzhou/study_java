@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.rocketmq.spring_consume_demo;
 
+import javax.annotation.Resource;
+
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.annotation.Resource;
 
 @SpringBootTest
 class ConsumeApplicationTest {

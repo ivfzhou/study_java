@@ -1,12 +1,12 @@
 package cn.ivfzhou.java.mybatis.transaction;
 
+import java.sql.Connection;
+import java.util.Properties;
+import javax.sql.DataSource;
+
 import org.apache.ibatis.session.TransactionIsolationLevel;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.TransactionFactory;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.util.Properties;
 
 public class MyTransactionManager implements TransactionFactory {
 

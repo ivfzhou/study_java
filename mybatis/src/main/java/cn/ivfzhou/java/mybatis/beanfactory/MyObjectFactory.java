@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.mybatis.beanfactory;
 
-import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+
+import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 
 /*
  * 创建JavaBean时会通过该拦截器。xml配置需要配置该类。

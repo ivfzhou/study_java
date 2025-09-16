@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true"
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               scan="true"
                scanPeriod="60 seconds"
                debug="false"
                xmlns="http://ch.qos.logback/xml/ns/logback"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback">
     <contextName>springboot</contextName>
     <property name="log.path" value="logs"/>

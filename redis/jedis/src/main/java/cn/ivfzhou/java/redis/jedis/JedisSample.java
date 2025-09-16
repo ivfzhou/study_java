@@ -1,9 +1,9 @@
 package cn.ivfzhou.java.redis.jedis;
 
+import java.time.Duration;
+
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.time.Duration;
 
 public class JedisSample {
 

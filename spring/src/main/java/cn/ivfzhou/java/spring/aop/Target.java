@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Target {
 
-    public String get(){
+    public String get() {
         System.out.println("target.get()");
         return "OK";
     }

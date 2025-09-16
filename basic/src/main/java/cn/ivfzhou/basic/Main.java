@@ -1,4 +1,4 @@
-package cn.ivfzhou.other;
+package cn.ivfzhou.basic;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -63,13 +63,6 @@ public class Main {
         }
     }
 
-    // Java16 的数据类。
-    static public record Point(
-            int x,
-            int y
-    ) {
-    }
-
     static void recordClass() {
         var p = new Point(1, 2);
         System.out.println(p.x);
@@ -91,17 +84,6 @@ public class Main {
         }
     }
 
-    // Java17 的密封类。
-    static public sealed class Shape permits Circle, Square {
-
-    }
-
-    static public final class Circle extends Shape {
-    }
-
-    static public final class Square extends Shape {
-    }
-
     // Java11 的拉姆达参数可使用 var。
     static void lambda() {
         BiConsumer<String, String> consumer = (var a, var b) -> System.out.println(a);
@@ -115,6 +97,24 @@ public class Main {
      * }
      * */
     static void snippetCode() {
+    }
+
+    // Java16 的数据类。
+    static public record Point(
+            int x,
+            int y
+    ) {
+    }
+
+    // Java17 的密封类。
+    static public sealed class Shape permits Circle, Square {
+
+    }
+
+    static public final class Circle extends Shape {
+    }
+
+    static public final class Square extends Shape {
     }
 
 }

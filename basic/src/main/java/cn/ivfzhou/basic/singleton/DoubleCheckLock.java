@@ -1,11 +1,11 @@
-package cn.ivfzhou.other.singleton;
+package cn.ivfzhou.basic.singleton;
 
 public class DoubleCheckLock {
 
+    private static volatile DoubleCheckLock instance;
+
     private DoubleCheckLock() {
     }
-
-    private static volatile DoubleCheckLock instance;
 
     public static DoubleCheckLock getInstance() {
         if (instance == null) {

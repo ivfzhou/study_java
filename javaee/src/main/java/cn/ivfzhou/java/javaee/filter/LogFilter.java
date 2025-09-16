@@ -1,19 +1,90 @@
 package cn.ivfzhou.java.javaee.filter;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ReadListener;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletRequestWrapper;
+import javax.servlet.ServletResponse;
+import javax.servlet.ServletResponseWrapper;
+import javax.servlet.WriteListener;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 
 @WebFilter(servletNames = "*", urlPatterns = "/")
 public class LogFilter implements Filter {
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        ServletRequestWrapper req = wrapperReq((HttpServletRequest) request);
+        ServletResponseWrapper rsp = wrapperRsp((HttpServletResponse) response);
+        long now = System.currentTimeMillis();
+        chain.doFilter(req, rsp);
+        Duration cost = Duration.ofMillis(System.currentTimeMillis() - now);
+
+        if (isEnableLog(request.getContentType())) {
+            byte[] reqBody = ((InputStreamDecorator) req.getInputStream()).getReqBody();
+            System.out.printf("request body %s\n", new String(reqBody, StandardCharsets.UTF_8));
+        }
+        if (isEnableLog(rsp.getContentType())) {
+            byte[] rspBody = ((OutputStreamDecorator) rsp.getOutputStream()).getRspBody();
+            System.out.printf("response body %s\n", new String(rspBody, StandardCharsets.UTF_8));
+        }
+        System.out.printf("cost %s\n", cost.toString());
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+
+    @Override
+    public void destroy() {
+    }
+
+    private HttpServletResponseWrapper wrapperRsp(HttpServletResponse rsp) throws IOException {
+        final OutputStreamDecorator rspDecorator = new OutputStreamDecorator(rsp.getOutputStream());
+        return new HttpServletResponseWrapper(rsp) {
+            final PrintWriter pw = new PrintWriter(rspDecorator);
+
+            public ServletOutputStream getOutputStream() {
+                return rspDecorator;
+            }
+
+            public PrintWriter getWriter() {
+                return pw;
+            }
+        };
+    }
+
+    private HttpServletRequestWrapper wrapperReq(HttpServletRequest req) throws IOException {
+        final InputStreamDecorator reqDecorator = new InputStreamDecorator(req.getInputStream());
+        return new HttpServletRequestWrapper(req) {
+            public ServletInputStream getInputStream() {
+                return reqDecorator;
+            }
+        };
+    }
+
+    private boolean isEnableLog(String ct) {
+        if (ct == null || ct.isEmpty())
+            return false;
+        ct = ct.toLowerCase();
+        return ct.contains("application/json") ||
+                ct.contains("application/x-www-form-urlencoded") ||
+                ct.contains("text/plain");
+    }
 
     private static class OutputStreamDecorator extends ServletOutputStream {
         final ServletOutputStream o;
@@ -77,66 +148,6 @@ public class LogFilter implements Filter {
             bo.write(read);
             return read;
         }
-    }
-
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        ServletRequestWrapper req = wrapperReq((HttpServletRequest) request);
-        ServletResponseWrapper rsp = wrapperRsp((HttpServletResponse) response);
-        long now = System.currentTimeMillis();
-        chain.doFilter(req, rsp);
-        Duration cost = Duration.ofMillis(System.currentTimeMillis() - now);
-
-        if (isEnableLog(request.getContentType())) {
-            byte[] reqBody = ((InputStreamDecorator) req.getInputStream()).getReqBody();
-            System.out.printf("request body %s\n", new String(reqBody, StandardCharsets.UTF_8));
-        }
-        if (isEnableLog(rsp.getContentType())) {
-            byte[] rspBody = ((OutputStreamDecorator) rsp.getOutputStream()).getRspBody();
-            System.out.printf("response body %s\n", new String(rspBody, StandardCharsets.UTF_8));
-        }
-        System.out.printf("cost %s\n", cost.toString());
-    }
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
-
-    @Override
-    public void destroy() {
-    }
-
-    private HttpServletResponseWrapper wrapperRsp(HttpServletResponse rsp) throws IOException {
-        final OutputStreamDecorator rspDecorator = new OutputStreamDecorator(rsp.getOutputStream());
-        return new HttpServletResponseWrapper(rsp) {
-            final PrintWriter pw = new PrintWriter(rspDecorator);
-
-            public ServletOutputStream getOutputStream() {
-                return rspDecorator;
-            }
-
-            public PrintWriter getWriter() {
-                return pw;
-            }
-        };
-    }
-
-    private HttpServletRequestWrapper wrapperReq(HttpServletRequest req) throws IOException {
-        final InputStreamDecorator reqDecorator = new InputStreamDecorator(req.getInputStream());
-        return new HttpServletRequestWrapper(req) {
-            public ServletInputStream getInputStream() {
-                return reqDecorator;
-            }
-        };
-    }
-
-    private boolean isEnableLog(String ct) {
-        if (ct == null || ct.isEmpty())
-            return false;
-        ct = ct.toLowerCase();
-        return ct.contains("application/json") ||
-                ct.contains("application/x-www-form-urlencoded") ||
-                ct.contains("text/plain");
     }
 
 }

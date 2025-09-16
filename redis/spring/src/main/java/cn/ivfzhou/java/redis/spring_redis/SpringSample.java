@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.redis.spring_redis;
 
+import java.time.Duration;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
-
-import java.time.Duration;
 
 public class SpringSample {
 

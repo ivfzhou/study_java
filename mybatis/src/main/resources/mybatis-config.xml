@@ -62,7 +62,8 @@
             <transactionManager type="JDBC"> <!-- MANAGED JdbcTransactionFactory ManagedTransactionFactory -->
                 <property name="closeConnection" value="false"/>
             </transactionManager>
-            <dataSource type="cn.ivfzhou.java.mybatis.transaction.MyDataSourceFactory"><!-- POOLED UNPOOLED JNDI UnpooledDataSourceFactory -->
+            <dataSource
+                    type="cn.ivfzhou.java.mybatis.transaction.MyDataSourceFactory"><!-- POOLED UNPOOLED JNDI UnpooledDataSourceFactory -->
                 <!-- 如果 ${driver} 没找到则为冒号后部分值。需要配置开启这个特性。-->
                 <property name="driver" value="${driver?:com.mysql.jdbc.Driver}"/>
                 <property name="url" value="${url}"/>

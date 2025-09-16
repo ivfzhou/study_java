@@ -1,4 +1,4 @@
-package cn.ivfzhou.other;
+package cn.ivfzhou.basic;
 
 import java.util.Arrays;
 import java.util.Comparator;

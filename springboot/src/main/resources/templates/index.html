@@ -9,8 +9,8 @@ Hello Thymeleaf!
 <br/>
 <p th:text="${textual}">静态参数值。无 textual 显示空</p>
 <p th:if="${textual != null}" th:text="${textual}"></p>
-<p th:unless="${textual != null}" th:text="${textual}"></p>
-<p th:unless="${textual == null}" th:text="${textual}"></p>
+<p th:text="${textual}" th:unless="${textual != null}"></p>
+<p th:text="${textual}" th:unless="${textual == null}"></p>
 <p th:text="${textual == null ? 'is null' : textual}"></p>
 <table>
     <tr>

@@ -1,7 +1,7 @@
 package cn.ivfzhou.java.mybatis;
 
-import javax.sql.DataSource;
 import java.util.HashMap;
+import javax.sql.DataSource;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import org.apache.ibatis.annotations.Select;
@@ -17,11 +17,6 @@ import org.apache.ibatis.type.EnumOrdinalTypeHandler;
 import cn.ivfzhou.java.mybatis.bean.Blog;
 
 public class Test1 {
-
-    public interface BlogMapper {
-        @Select("SELECT * FROM `t_blog` WHERE `id`=#{id}")
-        Blog selectByID(int id);
-    }
 
     /*
      * 不使用 xml 配置获取 SQLSessionFactory。
@@ -43,6 +38,11 @@ public class Test1 {
             Blog blog = mapper.selectByID(1);
             System.out.println(blog);
         }
+    }
+
+    public interface BlogMapper {
+        @Select("SELECT * FROM `t_blog` WHERE `id`=#{id}")
+        Blog selectByID(int id);
     }
 
 }

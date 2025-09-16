@@ -2,7 +2,7 @@
 <%@ page import="java.util.Date" %>
 <%@ include file="include" %> <%-- 在 jsp 文件加载前引入内容 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>

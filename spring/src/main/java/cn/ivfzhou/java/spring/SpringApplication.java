@@ -3,9 +3,9 @@ package cn.ivfzhou.java.spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.ivfzhou.java.spring.tx.TX;
 import cn.ivfzhou.java.spring.aop.Target;
 import cn.ivfzhou.java.spring.bean.User;
+import cn.ivfzhou.java.spring.tx.TX;
 
 public class SpringApplication {
 
@@ -25,7 +25,8 @@ public class SpringApplication {
         TX tx = (TX) ac.getBean("tx");
         try {
             tx.insert();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         tx.query();
     }
 

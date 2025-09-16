@@ -1,13 +1,13 @@
 package cn.ivfzhou.java.zookeeper;
 
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 import org.junit.Test;
-
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class ZooKeeperPoolTest {
 

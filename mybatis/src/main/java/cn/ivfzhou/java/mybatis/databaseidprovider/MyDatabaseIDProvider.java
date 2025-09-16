@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.mybatis.databaseidprovider;
 
-import org.apache.ibatis.mapping.DatabaseIdProvider;
-
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Properties;
+import javax.sql.DataSource;
+
+import org.apache.ibatis.mapping.DatabaseIdProvider;
 
 public class MyDatabaseIDProvider implements DatabaseIdProvider {
 

@@ -1,11 +1,11 @@
 package cn.ivfzhou.java.zookeeper;
 
+import java.io.IOException;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
 import org.junit.Test;
-
-import java.io.IOException;
 
 public class ZooKeeperTest {
 

@@ -1,13 +1,18 @@
 package cn.ivfzhou.java.spring.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 
 //@Component
 @Aspect
 public class MyAOP {
-    
+
     // 第一个 .* 表示包下所有类，第二个 .* 表示所有方法，(..) 表示任意数量和类型的参数。
     // a.b.c..，表示包下任意数量的子包。
     // a.b.*.c，其中 * 匹配单个包。

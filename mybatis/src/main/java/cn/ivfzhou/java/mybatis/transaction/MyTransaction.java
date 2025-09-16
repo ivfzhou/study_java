@@ -1,9 +1,9 @@
 package cn.ivfzhou.java.mybatis.transaction;
 
-import org.apache.ibatis.transaction.Transaction;
-
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.apache.ibatis.transaction.Transaction;
 
 public class MyTransaction implements Transaction {
 

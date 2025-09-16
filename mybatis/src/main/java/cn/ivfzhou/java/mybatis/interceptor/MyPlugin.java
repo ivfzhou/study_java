@@ -1,13 +1,13 @@
 package cn.ivfzhou.java.mybatis.interceptor;
 
+import java.sql.Statement;
+import java.util.Properties;
+
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
-
-import java.sql.Statement;
-import java.util.Properties;
 
 /*
  * Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)

@@ -1,11 +1,11 @@
-package cn.ivfzhou.other.lock;
+package cn.ivfzhou.basic.concurrent;
 
 import java.util.concurrent.Exchanger;
 
-public class Exchange {
+public final class TestExchanger {
 
-    public static void exchange() {
-        Exchanger<String> e = new Exchanger<>();
+    public static void test() {
+        var e = new Exchanger<String>();
         new Thread(() -> {
             try {
                 System.out.println("1: " + e.exchange("1"));
@@ -23,8 +23,8 @@ public class Exchange {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Exchange.exchange();
-        Thread.sleep(100L);
+        test();
+        Thread.sleep(1000);
     }
 
 }

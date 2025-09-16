@@ -1,9 +1,9 @@
 package cn.ivfzhou.java.mybatis.cacher;
 
+import java.util.concurrent.locks.ReadWriteLock;
+
 import org.apache.ibatis.builder.InitializingObject;
 import org.apache.ibatis.cache.Cache;
-
-import java.util.concurrent.locks.ReadWriteLock;
 
 public class MyChacher implements Cache, InitializingObject {
 

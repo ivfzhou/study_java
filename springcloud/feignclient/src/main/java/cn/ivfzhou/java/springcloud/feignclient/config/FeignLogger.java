@@ -1,14 +1,14 @@
 package cn.ivfzhou.java.springcloud.feignclient.config;
 
+import java.io.IOException;
+import java.time.Duration;
+
 import feign.Logger;
 import feign.Request;
 import feign.Response;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.time.Duration;
 
 @Component
 public class FeignLogger extends Logger {

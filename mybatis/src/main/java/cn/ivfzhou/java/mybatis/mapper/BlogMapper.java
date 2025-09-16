@@ -3,7 +3,9 @@ package cn.ivfzhou.java.mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Lang;
+import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Update;
 
 import cn.ivfzhou.java.mybatis.bean.Author;
 import cn.ivfzhou.java.mybatis.bean.Blog;

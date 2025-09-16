@@ -1,10 +1,10 @@
 package cn.ivfzhou.java.mybatis.transaction;
 
+import java.util.Properties;
+import javax.sql.DataSource;
+
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import org.apache.ibatis.datasource.DataSourceFactory;
-
-import javax.sql.DataSource;
-import java.util.Properties;
 
 public class MyDataSourceFactory implements DataSourceFactory {
 

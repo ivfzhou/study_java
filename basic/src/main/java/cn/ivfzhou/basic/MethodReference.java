@@ -1,4 +1,4 @@
-package cn.ivfzhou.other;
+package cn.ivfzhou.basic;
 
 public class MethodReference {
 

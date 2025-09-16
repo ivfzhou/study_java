@@ -1,9 +1,12 @@
-package cn.ivfzhou.other.lock;
+package cn.ivfzhou.basic.concurrent;
 
-public class CountDownLatch {
+import java.util.concurrent.CountDownLatch;
 
-    public static void countDownLatch() throws InterruptedException {
-        java.util.concurrent.CountDownLatch cdl = new java.util.concurrent.CountDownLatch(2);
+// 等待所有线程退出。
+public final class TestCountDownLatch {
+
+    public static void test1() throws InterruptedException {
+        var cdl = new CountDownLatch(2);
         new Thread(() -> {
             System.out.println("1 done");
             cdl.countDown();
@@ -15,11 +18,11 @@ public class CountDownLatch {
         cdl.await();
     }
 
-    public static void join() throws InterruptedException {
-        Thread thread = new Thread(() -> {
+    public static void test2() throws InterruptedException {
+        var thread = new Thread(() -> {
             System.out.println("1 done");
         });
-        Thread thread1 = new Thread(() -> {
+        var thread1 = new Thread(() -> {
             System.out.println("2 done");
         });
         thread.start();
@@ -29,8 +32,7 @@ public class CountDownLatch {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch.countDownLatch();
-        CountDownLatch.join();
+        test2();
     }
 
 }

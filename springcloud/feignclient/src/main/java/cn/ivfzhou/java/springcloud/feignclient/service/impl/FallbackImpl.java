@@ -1,7 +1,8 @@
 package cn.ivfzhou.java.springcloud.feignclient.service.impl;
 
-import cn.ivfzhou.java.springcloud.feignclient.service.IFeignService;
 import org.springframework.stereotype.Component;
+
+import cn.ivfzhou.java.springcloud.feignclient.service.IFeignService;
 
 @Component
 public class FallbackImpl implements IFeignService {
