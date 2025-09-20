@@ -14,48 +14,49 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletResponseWrapper;
 import jakarta.servlet.WriteListener;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
 
-@WebFilter(servletNames = "*", urlPatterns = "/")
+// @WebFilter(servletNames = "*", urlPatterns = "/")
 public class LogFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        ServletRequestWrapper req = wrapperReq((HttpServletRequest) request);
-        ServletResponseWrapper rsp = wrapperRsp((HttpServletResponse) response);
-        long now = System.currentTimeMillis();
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        var req = wrapperReq((HttpServletRequest) request);
+        var rsp = wrapperRsp((HttpServletResponse) response);
+        var now = System.currentTimeMillis();
         chain.doFilter(req, rsp);
-        Duration cost = Duration.ofMillis(System.currentTimeMillis() - now);
+        var cost = Duration.ofMillis(System.currentTimeMillis() - now);
 
         if (isEnableLog(request.getContentType())) {
-            byte[] reqBody = ((InputStreamDecorator) req.getInputStream()).getReqBody();
-            System.out.printf("request body %s\n", new String(reqBody, StandardCharsets.UTF_8));
+            var reqBody = ((ServletInputStreamDecorator) req.getInputStream()).getReqBody();
+            System.out.printf("HTTP REQUEST BODY: %s\n", new String(reqBody, StandardCharsets.UTF_8));
         }
         if (isEnableLog(rsp.getContentType())) {
-            byte[] rspBody = ((OutputStreamDecorator) rsp.getOutputStream()).getRspBody();
-            System.out.printf("response body %s\n", new String(rspBody, StandardCharsets.UTF_8));
+            var rspBody = ((ServletOutputStreamDecorator) rsp.getOutputStream()).getRspBody();
+            System.out.printf("HTTP RESPONSE BODY: %s\n", new String(rspBody, StandardCharsets.UTF_8));
         }
-        System.out.printf("cost %s\n", cost.toString());
+        System.out.printf("HTTP COST: %s\n", cost.toString());
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
+        System.out.printf("LogFilter init %s\n", filterConfig);
     }
 
     @Override
     public void destroy() {
+        System.out.println("LogFilter destroyed");
     }
 
     private HttpServletResponseWrapper wrapperRsp(HttpServletResponse rsp) throws IOException {
-        final OutputStreamDecorator rspDecorator = new OutputStreamDecorator(rsp.getOutputStream());
+        final var rspDecorator = new ServletOutputStreamDecorator(rsp.getOutputStream());
+
         return new HttpServletResponseWrapper(rsp) {
             final PrintWriter pw = new PrintWriter(rspDecorator);
 
@@ -70,7 +71,8 @@ public class LogFilter implements Filter {
     }
 
     private HttpServletRequestWrapper wrapperReq(HttpServletRequest req) throws IOException {
-        final InputStreamDecorator reqDecorator = new InputStreamDecorator(req.getInputStream());
+        final var reqDecorator = new ServletInputStreamDecorator(req.getInputStream());
+
         return new HttpServletRequestWrapper(req) {
             public ServletInputStream getInputStream() {
                 return reqDecorator;
@@ -79,74 +81,57 @@ public class LogFilter implements Filter {
     }
 
     private boolean isEnableLog(String ct) {
-        if (ct == null || ct.isEmpty())
-            return false;
+        if (ct == null || ct.isBlank()) return false;
         ct = ct.toLowerCase();
         return ct.contains("application/json") ||
                 ct.contains("application/x-www-form-urlencoded") ||
                 ct.contains("text/plain");
     }
 
-    private static class OutputStreamDecorator extends ServletOutputStream {
-        final ServletOutputStream o;
-        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+    private static class ServletOutputStreamDecorator extends ServletOutputStream {
+        final ServletOutputStream stream;
 
-        OutputStreamDecorator(ServletOutputStream o) {
-            this.o = o;
-        }
+        ByteArrayOutputStream bs = new ByteArrayOutputStream();
 
-        byte[] getRspBody() {
-            return bo.toByteArray();
-        }
+        ServletOutputStreamDecorator(ServletOutputStream stream) {this.stream = stream;}
+
+        byte[] getRspBody() {return bs.toByteArray();}
 
         @Override
-        public boolean isReady() {
-            return o.isReady();
-        }
+        public boolean isReady() {return stream.isReady();}
 
         @Override
-        public void setWriteListener(WriteListener writeListener) {
-            o.setWriteListener(writeListener);
-        }
+        public void setWriteListener(WriteListener writeListener) {stream.setWriteListener(writeListener);}
 
         @Override
         public void write(int b) throws IOException {
-            o.write(b);
-            bo.write(b);
+            stream.write(b);
+            bs.write(b);
         }
     }
 
-    private static class InputStreamDecorator extends ServletInputStream {
-        final ServletInputStream i;
-        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+    private static class ServletInputStreamDecorator extends ServletInputStream {
+        final ServletInputStream stream;
 
-        InputStreamDecorator(ServletInputStream i) {
-            this.i = i;
-        }
+        ByteArrayOutputStream bs = new ByteArrayOutputStream();
 
-        byte[] getReqBody() {
-            return bo.toByteArray();
-        }
+        ServletInputStreamDecorator(ServletInputStream stream) {this.stream = stream;}
+
+        byte[] getReqBody() {return bs.toByteArray();}
 
         @Override
-        public boolean isFinished() {
-            return i.isFinished();
-        }
+        public boolean isFinished() {return stream.isFinished();}
 
         @Override
-        public boolean isReady() {
-            return i.isReady();
-        }
+        public boolean isReady() {return stream.isReady();}
 
         @Override
-        public void setReadListener(ReadListener readListener) {
-            i.setReadListener(readListener);
-        }
+        public void setReadListener(ReadListener readListener) {stream.setReadListener(readListener);}
 
         @Override
         public int read() throws IOException {
-            int read = i.read();
-            bo.write(read);
+            var read = stream.read();
+            bs.write(read);
             return read;
         }
     }

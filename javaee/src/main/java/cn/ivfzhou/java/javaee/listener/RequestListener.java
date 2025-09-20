@@ -8,12 +8,12 @@ public class RequestListener implements ServletRequestListener {
 
     @Override
     public void requestDestroyed(ServletRequestEvent sre) {
-        System.out.println("RequestListener requestDestroyed");
+        System.out.println("RequestListener destroyed");
     }
 
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
-        System.out.println("RequestListener requestInitialized");
+        System.out.println("RequestListener init");
     }
 
 }

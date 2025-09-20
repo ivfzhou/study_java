@@ -3,8 +3,6 @@ package cn.ivfzhou.java.javaee.servlet;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,33 +11,33 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MyServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.getWriter().println("hello doGet");
+    protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws IOException {
+        rsp.getWriter().println("hello you do get");
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ServletInputStream inputStream = req.getInputStream();
-        StringBuffer sb = new StringBuffer();
-        byte[] bs = new byte[8 * 1024];
-        for (int len = inputStream.read(bs); len != -1; len = inputStream.read(bs)) {
-            sb.append(new String(bs, 0, len, StandardCharsets.UTF_8));
+    protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws IOException {
+        try (var inputStream = req.getInputStream()) {
+            var sb = new StringBuffer();
+            var bs = new byte[8 * 1024];
+            for (var len = inputStream.read(bs); len != -1; len = inputStream.read(bs)) {
+                sb.append(new String(bs, 0, len, StandardCharsets.UTF_8));
+            }
+            System.out.println(sb);
         }
-        inputStream.close();
-        System.out.println(sb);
 
-        resp.addHeader("Content-Type", "text/plain");
-        resp.getOutputStream().println("hello doPost");
+        rsp.addHeader("Content-Type", "text/plain");
+        rsp.getOutputStream().println("hello you do post");
     }
 
     @Override
     public void destroy() {
-        System.out.println("servlet destroy");
+        System.out.println("MyServlet destroyed");
     }
 
     @Override
     public void init() {
-        System.out.println("servlet init " + getInitParameter("servletName"));
+        System.out.println("MyServlet init " + this.getInitParameter("servletName"));
     }
 
 }

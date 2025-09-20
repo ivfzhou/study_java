@@ -9,16 +9,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 
-//@WebFilter(servletNames = "*", urlPatterns = "/")
+// @WebFilter(servletNames = "*", urlPatterns = "/")
 public class MyFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("filter init " + filterConfig.getInitParameter("filterName"));
+    public void init(FilterConfig filterConfig) {
+        System.out.println("MyFilter init " + filterConfig.getInitParameter("filterName"));
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         System.out.println("filter begin");
         chain.doFilter(request, response);
         System.out.println("filter end");
@@ -26,7 +27,7 @@ public class MyFilter implements Filter {
 
     @Override
     public void destroy() {
-        System.out.println("filter destroy");
+        System.out.println("MyFilter destroyed");
     }
 
 }

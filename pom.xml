@@ -36,7 +36,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>21</java.version>
-        <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
 
         <spring.version>7.0.0-M9</spring.version>
         <springboot.version>4.0.0-M3</springboot.version>
@@ -72,10 +71,10 @@
         <commonlog.version>1.3.5</commonlog.version>
         <jakarta.version>6.1.0</jakarta.version>
         <jakarta.jsp.version>4.0.0</jakarta.jsp.version>
-        <jakarta.jstl.version>3.0.2</jakarta.jstl.version>
+        <jakarta.jstl.version>3.0.1</jakarta.jstl.version>
         <glassfish.version>3.0.1</glassfish.version>
 
-        <my.filter.value>my filter value</my.filter.value>
+        <my.pom.filter.value>my parent pom filter value</my.pom.filter.value>
     </properties>
 
     <dependencyManagement>
@@ -215,7 +214,6 @@
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.conn.version}</version>
-                <scope>provided</scope>
             </dependency>
 
             <dependency>
@@ -293,25 +291,21 @@
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
                 <version>${jakarta.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.servlet.jsp</groupId>
                 <artifactId>jakarta.servlet.jsp-api</artifactId>
                 <version>${jakarta.jsp.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
                 <version>${jakarta.jstl.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl</artifactId>
                 <version>${glassfish.version}</version>
-                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
