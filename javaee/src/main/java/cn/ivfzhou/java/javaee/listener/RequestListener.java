@@ -1,9 +1,9 @@
 package cn.ivfzhou.java.javaee.listener;
 
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.ServletRequestListener;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
 
-//@WebListener
+// @WebListener
 public class RequestListener implements ServletRequestListener {
 
     @Override

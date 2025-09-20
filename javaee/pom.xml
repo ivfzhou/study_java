@@ -10,21 +10,21 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.ivfzhou.java</groupId>
     <artifactId>javaee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>javaee</name>
-    <url>https://www.ivfzhou.cn</url>
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -32,17 +32,13 @@
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish.web</groupId>
-            <artifactId>jstl-impl</artifactId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -53,22 +49,17 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <charset>UTF-8</charset>
-                    <uriEncoding>UTF-8</uriEncoding>
-                </configuration>
             </plugin>
         </plugins>
 
         <!-- 生成的文件名 -->
-        <finalName>webapp</finalName>
+        <finalName>javaee</finalName>
 
         <resources>
             <resource>
                 <!-- 默认值 -->
                 <directory>src/main/resources</directory>
-                <!-- 默认 false。把文件中${}替换成其它值。 -->
+                <!-- 默认 false。把文件中 ${} 替换成其它值。 -->
                 <filtering>true</filtering>
             </resource>
         </resources>

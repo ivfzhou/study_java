@@ -2,12 +2,12 @@ package cn.ivfzhou.basic;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
-public class Lambda {
+public final class TestLambda {
 
     public static void main(String[] args) {
-        List<String> list = Arrays.asList("1", "2");
+        var list = Arrays.asList("1", "2");
+
         list.sort(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {

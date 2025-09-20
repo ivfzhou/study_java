@@ -3,7 +3,7 @@ package cn.ivfzhou.basic;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
-public class Main {
+public final class TestMain {
 
     public static void main(String[] args) {
         switchExpression();
@@ -96,25 +96,16 @@ public class Main {
      * System.out.println("Hello, World!");
      * }
      * */
-    static void snippetCode() {
-    }
+    static void snippetCode() {}
 
     // Java16 的数据类。
-    static public record Point(
-            int x,
-            int y
-    ) {
-    }
+    static public record Point(int x, int y) {}
 
     // Java17 的密封类。
-    static public sealed class Shape permits Circle, Square {
+    static public sealed class Shape permits Circle, Square {}
 
-    }
+    static public final class Circle extends Shape {}
 
-    static public final class Circle extends Shape {
-    }
-
-    static public final class Square extends Shape {
-    }
+    static public final class Square extends Shape {}
 
 }

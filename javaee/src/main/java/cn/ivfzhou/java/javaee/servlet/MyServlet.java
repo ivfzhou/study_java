@@ -2,22 +2,23 @@ package cn.ivfzhou.java.javaee.servlet;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/myServlet")
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+// @WebServlet("/myServlet")
 public class MyServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.getWriter().println("hello doGet");
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ServletInputStream inputStream = req.getInputStream();
         StringBuffer sb = new StringBuffer();
         byte[] bs = new byte[8 * 1024];
@@ -37,7 +38,7 @@ public class MyServlet extends HttpServlet {
     }
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         System.out.println("servlet init " + getInitParameter("servletName"));
     }
 

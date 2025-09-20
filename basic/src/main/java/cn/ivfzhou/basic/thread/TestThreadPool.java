@@ -2,15 +2,14 @@ package cn.ivfzhou.basic.thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadPool {
+public final class TestThreadPool {
 
-    static void executors() throws ExecutionException, InterruptedException {
-        ExecutorService pool = new ThreadPoolExecutor(
+    static void test() throws ExecutionException, InterruptedException {
+        var pool = new ThreadPoolExecutor(
                 10,
                 20,
                 1000,
@@ -24,7 +23,7 @@ public class ThreadPool {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        executors();
+        test();
     }
 
 }

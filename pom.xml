@@ -35,21 +35,50 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <java.version>21</java.version>
         <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
-        <springboot.version>2.7.2</springboot.version>
-        <spring.version>5.3.22</spring.version>
-        <spring.cloud.alibaba.version>2021.1</spring.cloud.alibaba.version>
-        <spring.cloud.version>2021.0.3</spring.cloud.version>
-        <netflix.version>2.2.10.RELEASE</netflix.version>
+
+        <spring.version>7.0.0-M9</spring.version>
+        <springboot.version>4.0.0-M3</springboot.version>
+        <springcloud.version>2025.1.0-M2</springcloud.version>
+        <alibabacloud.version>2023.0.3.3</alibabacloud.version>
+
+        <nacos.spring.version>2.1.1</nacos.spring.version>
+        <mybatis.spring.version>3.0.5</mybatis.spring.version>
+        <shiro.spring.version>2.0.5</shiro.spring.version>
+
+        <mybatis.springboot.version>3.0.5</mybatis.springboot.version>
+        <rocketmq.springboot.version>2.3.4</rocketmq.springboot.version>
+        <nacos.springboot.version>0.2.12</nacos.springboot.version>
+        <dubbo.springboot.version>3.3.5</dubbo.springboot.version>
+        <gateway.springboot.version>4.3.1</gateway.springboot.version>
+
+        <netflix.springcloud.version>2.2.10.RELEASE</netflix.springcloud.version>
+
+        <fastjson.version>2.0.58</fastjson.version>
+        <mybatis.version>3.5.19</mybatis.version>
+        <druid.version>1.2.27</druid.version>
+        <mybatis.gen.version>1.4.2</mybatis.gen.version>
+        <mysql.conn.version>9.4.0</mysql.conn.version>
+        <log4j.version>2.25.1</log4j.version>
+        <shiro.version>2.0.5</shiro.version>
+        <zookeeper.version>3.9.4</zookeeper.version>
+        <dubbo.version>3.3.5</dubbo.version>
+        <rocketmq.version>5.3.3</rocketmq.version>
+        <junit.version>6.0.0-M2</junit.version>
+        <fstdfs.version>1.27.2</fstdfs.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <logback.version>1.5.18</logback.version>
+        <commonlog.version>1.3.5</commonlog.version>
+        <jakarta.version>6.1.0</jakarta.version>
+        <jakarta.jsp.version>4.0.0</jakarta.jsp.version>
+        <jakarta.jstl.version>3.0.2</jakarta.jstl.version>
+        <glassfish.version>3.0.1</glassfish.version>
 
         <my.filter.value>my filter value</my.filter.value>
     </properties>
 
     <dependencyManagement>
-        <!--compile test runtime provided-->
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -61,14 +90,14 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>${springcloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${alibabacloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -87,217 +116,202 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-spring-context</artifactId>
+                <version>${nacos.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-actuator</artifactId>
+                <version>${nacos.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <version>${nacos.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${gateway.springboot.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-                <version>${netflix.version}</version>
+                <version>${netflix.springcloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-                <version>${netflix.version}</version>
+                <version>${netflix.springcloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-                <version>${netflix.version}</version>
+                <version>${netflix.springcloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-                <version>${netflix.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>3.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.rocketmq</groupId>
-                <artifactId>rocketmq-spring-boot-starter</artifactId>
-                <version>2.2.2</version>
+                <version>${netflix.springcloud.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.79</version>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.2.8</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.boot</groupId>
-                <artifactId>nacos-config-spring-boot-starter</artifactId>
-                <version>0.2.10</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.boot</groupId>
-                <artifactId>nacos-config-spring-boot-actuator</artifactId>
-                <version>0.2.10</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-spring-context</artifactId>
-                <version>1.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.boot</groupId>
-                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
-                <version>0.2.12</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.2</version>
+                <version>${druid.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
-                <version>3.5.9</version>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-core</artifactId>
-                <version>1.4.0</version>
+                <version>${mybatis.gen.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>2.0.7</version>
+                <version>${mybatis.spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.29</version>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql.conn.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
-                <version>2.15.0</version>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
-                <version>2.15.0</version>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-slf4j-impl</artifactId>
-                <version>2.15.0</version>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-jul</artifactId>
-                <version>2.15.0</version>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
-                <version>1.8.0</version>
+                <version>${shiro.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-ehcache</artifactId>
-                <version>1.9.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>1.8.0</version>
+                <version>${shiro.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
-                <version>3.8.0</version>
+                <version>${zookeeper.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>3.1.1</version>
+                <version>${dubbo.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
-                <version>4.9.4</version>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>5.8.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.8.2</version>
+                <version>${rocketmq.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
-                <version>5.8.2</version>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-params</artifactId>
-                <version>5.8.2</version>
-            </dependency>
-
             <dependency>
                 <groupId>com.github.tobato</groupId>
                 <artifactId>fastdfs-client</artifactId>
-                <version>1.27.2</version>
+                <version>${fastdfs.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>1.7.32</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.2.10</version>
+                <version>${logback.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
-                <version>1.2</version>
+                <version>${commonlog.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>4.0.1</version>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>javax.servlet.jsp-api</artifactId>
-                <version>2.3.3</version>
+                <groupId>jakarta.servlet.jsp</groupId>
+                <artifactId>jakarta.servlet.jsp-api</artifactId>
+                <version>${jakarta.jsp.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-                <version>1.2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet.jsp.jstl</groupId>
-                <artifactId>jstl-api</artifactId>
-                <version>1.2</version>
+                <version>${jakarta.jstl.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
-                <artifactId>jstl-impl</artifactId>
-                <version>1.2</version>
+                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+                <version>${glassfish.version}</version>
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -306,55 +320,23 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
                     <configuration>
-                        <source>8</source>
-                        <target>8</target>
-                        <encoding>UTF-8</encoding>
+                        <charset>UTF-8</charset>
+                        <uriEncoding>UTF-8</uriEncoding>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.mybatis.generator</groupId>
                     <artifactId>mybatis-generator-maven-plugin</artifactId>
-                    <version>1.4.0</version>
+                    <version>${mybatis.gen.version}</version>
                     <dependencies>
                         <dependency>
-                            <groupId>mysql</groupId>
-                            <artifactId>mysql-connector-java</artifactId>
-                            <version>8.0.29</version>
+                            <groupId>com.mysql</groupId>
+                            <artifactId>mysql-connector-j</artifactId>
+                            <version>${mysql.conn.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -370,11 +352,11 @@
     <distributionManagement>
         <repository>
             <id>nexus-upload</id>
-            <url>http://ivfzhoudebian:8081/repository/maven-releases/</url>
+            <url>http://ivfzhoudebian:8081/repository/maven-releases</url>
         </repository>
         <snapshotRepository>
             <id>nexus-upload</id>
-            <url>http://ivfzhoudebian:8081/repository/maven-snapshots/</url>
+            <url>http://ivfzhoudebian:8081/repository/maven-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

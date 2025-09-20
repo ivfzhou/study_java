@@ -1,11 +1,13 @@
 package cn.ivfzhou.java.aop.jdk;
 
-public class Main {
+public class TestMain {
 
     public static void main(String[] args) {
-        Target target = new Target();
-        Proxy o = (Proxy) java.lang.reflect.Proxy.newProxyInstance(target.getClass().getClassLoader(),
-                target.getClass().getInterfaces(), (proxy, method, args1) -> {
+        var target = new Target();
+        var o = (Proxy) java.lang.reflect.Proxy.newProxyInstance(
+                target.getClass().getClassLoader(),
+                target.getClass().getInterfaces(),
+                (proxy, method, args1) -> {
                     if (method.getName().equals("run")) {
                         System.out.println("begin");
                         Object invoke = method.invoke(target, args1);

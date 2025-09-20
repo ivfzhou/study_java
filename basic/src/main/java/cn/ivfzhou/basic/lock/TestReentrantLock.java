@@ -3,10 +3,10 @@ package cn.ivfzhou.basic.lock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Reentrant {
+public final class TestReentrantLock {
 
-    public static void lock() throws InterruptedException {
-        ReentrantLock lock = new ReentrantLock();
+    public static void test() {
+        var lock = new ReentrantLock();
         new Thread(() -> {
             try {
                 lock.lock();
@@ -25,14 +25,14 @@ public class Reentrant {
         }).start();
     }
 
-    public static void tryLock() throws InterruptedException {
-        ReentrantLock lock = new ReentrantLock();
+    public static void test2() {
+        var lock = new ReentrantLock();
         new Thread(() -> {
             try {
                 if (lock.tryLock())
-                    System.out.println("tryLock no wait timeout success");
+                    System.out.println("wait timeout success");
                 else
-                    System.out.println("tryLock no wait timeout failure");
+                    System.out.println("wait timeout failure");
             } finally {
                 lock.unlock();
             }
@@ -40,9 +40,9 @@ public class Reentrant {
         new Thread(() -> {
             try {
                 if (!lock.tryLock(100L, TimeUnit.MICROSECONDS))
-                    System.out.println("tryLock wait timeout success");
+                    System.out.println("wait timeout success");
                 else
-                    System.out.println("tryLock wait timeout failure");
+                    System.out.println("wait timeout failure");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
@@ -51,9 +51,9 @@ public class Reentrant {
         }).start();
     }
 
-    public static void interruptedLock() {
-        ReentrantLock lock = new ReentrantLock();
-        Thread thread = new Thread(() -> {
+    public static void test3() {
+        var lock = new ReentrantLock();
+        var thread = new Thread(() -> {
             try {
                 lock.lockInterruptibly();
             } catch (InterruptedException e) {
@@ -66,8 +66,8 @@ public class Reentrant {
         thread.interrupt();
     }
 
-    public static void fairLock() {
-        ReentrantLock lock = new ReentrantLock(true);
+    public static void test4() {
+        var lock = new ReentrantLock(true);
         new Thread(() -> {
             System.out.println("2 wait");
             lock.lock();
@@ -104,10 +104,10 @@ public class Reentrant {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Reentrant.lock();
-        Reentrant.tryLock();
-        Reentrant.interruptedLock();
-        Reentrant.fairLock();
+        TestReentrantLock.test();
+        TestReentrantLock.test2();
+        TestReentrantLock.test3();
+        TestReentrantLock.test4();
         Thread.sleep(3000L);
     }
 

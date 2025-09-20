@@ -1,11 +1,14 @@
 package cn.ivfzhou.basic.lock;
 
-public class Semaphore {
+import java.util.concurrent.Semaphore;
 
-    public static void semaphore() throws InterruptedException {
-        java.util.concurrent.Semaphore s = new java.util.concurrent.Semaphore(2);
+public final class TestSemaphore {
+
+    public static void test() throws InterruptedException {
+        var s = new Semaphore(2);
         new Thread(() -> {
             try {
+                System.out.println("1");
                 s.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -15,6 +18,7 @@ public class Semaphore {
         }).start();
         new Thread(() -> {
             try {
+                System.out.println("2");
                 s.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -24,6 +28,7 @@ public class Semaphore {
         }).start();
         new Thread(() -> {
             try {
+                System.out.println("3");
                 s.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -36,7 +41,7 @@ public class Semaphore {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Semaphore.semaphore();
+        test();
     }
 
 }

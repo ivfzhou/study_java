@@ -12,5 +12,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.ivfzhou.java</groupId>
     <artifactId>basic</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
 </project>
