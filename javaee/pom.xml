@@ -13,8 +13,8 @@
     <groupId>cn.ivfzhou.java</groupId>
     <artifactId>javaee</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
     <name>javaee</name>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
