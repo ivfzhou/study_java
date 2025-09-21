@@ -26,8 +26,7 @@
             hostAddress: 本地 IP 地址。
             %logger{36} 表示 Logger 的名字最长 36 个字符。
         -->
-        <Property name="LOG_PATTERN"
-                  value="%date{yyyy-MM-dd HH:mm:ss.SSS} %pid %level %logger [%M] - %msg%n"/>
+        <Property name="LOG_PATTERN" value="%date{yyyy-MM-dd HH:mm:ss.SSS} %pid %level %logger [%M] - %msg%n"/>
         <!-- 定义日志存储的路径，不要配置相对路径 -->
         <Property name="FILE_PATH" value="${basedir}/logs/"/>
         <Property name="FILE_NAME" value="log"/>
@@ -102,7 +101,7 @@
         <!-- 过滤掉 spring 和 mybatis 的一些无用的 DEBUG 信息，也可以在 springboot 的 logging.level.org.springframework=FATAL 设置 -->
         <!-- <logger name="org.springframework" level="INFO"></logger> -->
         <!-- <logger name="org.mybatis" level="INFO"></logger> -->
-        <!-- <logger name="org.apache.http" level="warn"/></logger> -->
+        <!-- <logger name="org.apache.http" level="WARN"/></logger> -->
     </Loggers>
 
 </Configuration>
