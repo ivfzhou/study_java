@@ -3,15 +3,15 @@ package cn.ivfzhou.java.spring.bean;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component("user")
+@Component("user0")
 // @Scope("prototype")
 // @Repository
 // @Service
@@ -35,8 +35,7 @@ public class User {
 
     private Object ref;
 
-    public User() {
-    }
+    public User() {}
 
     public User(int age, String name, User friend) {
         this.age = age;
@@ -44,62 +43,34 @@ public class User {
         this.friend = friend;
     }
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() {return age;}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setAge(int age) {this.age = age;}
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
 
     @Value("ivfzhou")
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
 
-    public User getFriend() {
-        return friend;
-    }
+    public User getFriend() {return friend;}
 
-    public void setFriend(User friend) {
-        this.friend = friend;
-    }
+    public void setFriend(User friend) {this.friend = friend;}
 
-    public Properties getPros() {
-        return pros;
-    }
+    public Properties getPros() {return pros;}
 
-    public void setPros(Properties pros) {
-        this.pros = pros;
-    }
+    public void setPros(Properties pros) {this.pros = pros;}
 
-    public Set<String> getSet() {
-        return set;
-    }
+    public Set<String> getSet() {return set;}
 
-    public void setSet(Set<String> set) {
-        this.set = set;
-    }
+    public void setSet(Set<String> set) {this.set = set;}
 
-    public Map<String, String> getMap() {
-        return map;
-    }
+    public Map<String, String> getMap() {return map;}
 
-    public void setMap(Map<String, String> map) {
-        this.map = map;
-    }
+    public void setMap(Map<String, String> map) {this.map = map;}
 
-    public Object getRef() {
-        return ref;
-    }
+    public Object getRef() {return ref;}
 
-    public void setRef(Object ref) {
-        this.ref = ref;
-    }
+    public void setRef(Object ref) {this.ref = ref;}
 
     @Override
     public String toString() {
@@ -110,13 +81,9 @@ public class User {
     }
 
     @PostConstruct
-    public void init() {
-        System.out.println("user init");
-    }
+    public void init() {System.out.println("user init");}
 
     @PreDestroy
-    public void destroy() {
-        System.out.println("user destroy");
-    }
+    public void destroy() {System.out.println("user destroy");}
 
 }

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import cn.ivfzhou.java.spring.bean.User;
-import cn.ivfzhou.java.spring.tx.TX;
+import cn.ivfzhou.java.spring.tx.MyTX;
 
 @SpringJUnitConfig(locations = "classpath:application.xml")
 public class SpringApplicationTest {
@@ -20,7 +20,7 @@ public class SpringApplicationTest {
     User user;
 
     @Autowired
-    TX tx;
+    MyTX myTx;
 
     @BeforeAll
     public static void setup() {
@@ -49,15 +49,15 @@ public class SpringApplicationTest {
 
     @Test
     public void query() {
-        tx.query();
+        myTx.query();
     }
 
     @Test
     public void insert() {
         try {
-            tx.insert();
+            myTx.insert();
         } catch (Exception e) {
-            System.out.println("回滚了");
+            e.printStackTrace();
         }
     }
 

@@ -1,31 +1,30 @@
 package cn.ivfzhou.java.spring;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.ivfzhou.java.spring.aop.Target;
 import cn.ivfzhou.java.spring.bean.User;
-import cn.ivfzhou.java.spring.tx.TX;
+import cn.ivfzhou.java.spring.tx.MyTX;
 
-public class SpringApplication {
+@EnableAspectJAutoProxy
+public final class SpringApplication {
 
     public static void main(String[] args) {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("application.xml");
+        var ac = new ClassPathXmlApplicationContext("application.xml");
 
-        User user = ac.getBean("user", User.class);
-        User user5 = (User) ac.getBean("user5");
-        System.out.println(user5 == user);
+        var user = ac.getBean("user", User.class);
+        var user0 = (User) ac.getBean("user0");
+        System.out.println(user0 == user);
 
-        Target target = ac.getBean(Target.class);
+        var target = ac.getBean(Target.class);
         target.get();
 
-        User user1 = (User) ac.getBean("user1");
-        System.out.println(user1.getSet());
-
-        TX tx = (TX) ac.getBean("tx");
+        var tx = (MyTX) ac.getBean("myTX");
         try {
             tx.insert();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         tx.query();
     }
