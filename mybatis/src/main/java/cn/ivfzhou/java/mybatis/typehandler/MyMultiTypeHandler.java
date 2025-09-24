@@ -20,8 +20,7 @@ public class MyMultiTypeHandler<E> extends BaseTypeHandler<E> {
     }
 
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, E parameter, JdbcType jdbcType) throws SQLException {
-    }
+    public void setNonNullParameter(PreparedStatement ps, int i, E parameter, JdbcType jdbcType) throws SQLException {}
 
     @Override
     public E getNullableResult(ResultSet rs, String columnName) throws SQLException {

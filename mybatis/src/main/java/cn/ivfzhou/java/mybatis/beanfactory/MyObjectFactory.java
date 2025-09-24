@@ -7,7 +7,7 @@ import java.util.Properties;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 
 /*
- * 创建JavaBean时会通过该拦截器。xml配置需要配置该类。
+ * 创建 JavaBean 时会通过该拦截器。xml配置需要配置该类。
  * */
 public class MyObjectFactory extends DefaultObjectFactory {
 

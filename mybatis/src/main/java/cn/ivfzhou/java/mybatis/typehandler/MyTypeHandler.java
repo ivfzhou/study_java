@@ -13,7 +13,7 @@ import org.apache.ibatis.type.MappedTypes;
 import cn.ivfzhou.java.mybatis.bean.Type;
 
 /*
- * 继承实现类型处理器，xml 配置配置包扫描。会覆盖已有的处理器。
+ * 继承实现类型处理器，xml 配置包扫描。会覆盖已有的处理器。
  * */
 @MappedJdbcTypes(value = {JdbcType.INTEGER}, includeNullJdbcType = true)
 @MappedTypes(Type.class)
@@ -38,7 +38,7 @@ public class MyTypeHandler extends BaseTypeHandler<Type> {
     }
 
     @Override
-    public Type getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+    public Type getNullableResult(CallableStatement cs, int columnIndex) {
         return null;
     }
 

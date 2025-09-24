@@ -12,10 +12,11 @@
     <!--<cache-ref namespace="BlogMapper"/>-->
 
     <!-- 自定义缓存。 -->
-    <!--<cache type="cn.ivfzhou.mybatis.cacher.MyChaher">
+    <!--
+    <cache type="cn.ivfzhou.mybatis.cacher.MyChaher">
         <property name="cacheFile" value="/tmp/my-custom-cache.tmp"/>
-    </cache>-->
-
+    </cache>
+    -->
 
     <!--
     statementType：STATEMENT，PREPARED，CALLABLE。
@@ -41,6 +42,7 @@
                  left join t_comment c on b.id = c.blog_id
         where b.id = #{id} /* ${id} '${name}' */
     </select>
+
     <resultMap id="blogMap" type="blog">
         <constructor>
             <idArg name="id" column="id"/>
@@ -59,15 +61,18 @@
             <result property="comment" column="comment"/>
         </collection>
         <discriminator javaType="_boolean" column="has_coauthor">
-            <!--<case value="true">
+            <!--
+            <case value="true">
                 <association property="coauthor">
                     <id property="id" column="coauthor_id"/>
                     <result property="name" column="coauthor_name"/>
                 </association>
-            </case>-->
+            </case>
+            -->
             <case value="true" resultMap="blogCoauthorMap" resultType="blogExtended"/>
         </discriminator>
     </resultMap>
+
     <resultMap id="blogCoauthorMap" type="blogExtended" extends="blogMap">
         <association property="coauthor">
             <id property="id" column="coauthor_id"/>
@@ -75,11 +80,11 @@
         </association>
     </resultMap>
 
-
     <select id="selectBlog2" resultType="blog" resultMap="blogMap2">
         select *
         from t_blog
     </select>
+
     <resultMap id="blogMap2" type="blog">
         <constructor>
             <idArg name="id" column="id"/>
@@ -91,11 +96,13 @@
         <collection property="comments" column="id" ofType="comment" foreignColumn="blog_id" select="selectComments"
                     fetchType="lazy"/>
     </resultMap>
+
     <select id="selectAuthor" resultType="author" parameterType="_int">
         select *
         from t_author
         where id = #{id}
     </select>
+
     <select id="selectComments" parameterType="_int" resultType="comment">
         select *
         from t_comment
@@ -106,6 +113,7 @@
     <select id="selectBlog3" resultSets="blog,author" resultType="blog" resultMap="blogMap3" statementType="CALLABLE">
         call selectBlog(#{param, jdbcType=INTEGER, mode=IN})
     </select>
+
     <resultMap id="blogMap3" type="blog">
         <constructor>
             <idArg name="id" column="id"/>
@@ -119,7 +127,6 @@
         </association>
     </resultMap>
 
-
     <insert id="insertBlog" parameterType="blog" flushCache="true" statementType="PREPARED" keyProperty="id"
             keyColumn="id" useGeneratedKeys="true">
         insert into t_blog (title, author_id, grade, `type`) values
@@ -129,7 +136,6 @@
             SELECT last_insert_id();
         </selectKey>
     </insert>
-
 
     <update id="updateBlog" flushCache="true" statementType="PREPARED" useGeneratedKeys="false"
             lang="cn.ivfzhou.java.mybatis.languagedriver.MyLanguageDriver">
@@ -163,6 +169,7 @@
         <bind name="pattern" value="'%' + _parameter.getTitle() + '%'"/>
         #{pattern}
     </update>
+
     <delete id="deleteBlog"></delete>
 
 </mapper>

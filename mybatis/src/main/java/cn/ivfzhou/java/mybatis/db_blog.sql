@@ -19,7 +19,7 @@ CREATE TABLE `t_blog`
 (
     `id`           int(10) unsigned NOT NULL AUTO_INCREMENT,
     `title`        varchar(50) DEFAULT NULL,
-    `grade` double DEFAULT NULL,
+    `grade`        double      DEFAULT NULL,
     `type`         int(11)     DEFAULT NULL,
     `author_id`    int(11)     DEFAULT NULL,
     `coauthor_id`  int(11)     DEFAULT NULL,
@@ -70,11 +70,11 @@ DELIMITER
 $$
 CREATE PROCEDURE selectBlog(IN param INT)
 BEGIN
-SELECT *
-FROM `t_blog`
-WHERE `id` = param;
-SELECT *
-FROM `t_author`
-WHERE `id` = param;
+    SELECT *
+    FROM `t_blog`
+    WHERE `id` = param;
+    SELECT *
+    FROM `t_author`
+    WHERE `id` = param;
 END$$
 DELIMITER ;

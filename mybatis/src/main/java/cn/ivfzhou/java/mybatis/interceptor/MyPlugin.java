@@ -23,7 +23,7 @@ public class MyPlugin implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         System.out.println("MyPlugin.intercept：" + invocation);
-        Object returnObject = invocation.proceed();
+        var returnObject = invocation.proceed();
         System.out.println("MyPlugin.intercept：" + returnObject);
         return returnObject;
     }

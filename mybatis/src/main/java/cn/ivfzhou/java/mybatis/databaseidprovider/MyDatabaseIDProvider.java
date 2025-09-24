@@ -18,7 +18,7 @@ public class MyDatabaseIDProvider implements DatabaseIdProvider {
 
     @Override
     public String getDatabaseId(DataSource dataSource) throws SQLException {
-        String productName = dataSource.getConnection().getMetaData().getDatabaseProductName();
+        var productName = dataSource.getConnection().getMetaData().getDatabaseProductName();
         System.out.println("MyDatabaseIDProvider.getDatabaseId：productName=" + productName);
         return props.getProperty(productName);
     }

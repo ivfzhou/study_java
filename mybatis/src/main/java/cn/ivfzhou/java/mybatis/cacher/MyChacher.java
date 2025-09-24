@@ -13,8 +13,7 @@ public class MyChacher implements Cache, InitializingObject {
     }
 
     @Override
-    public void putObject(Object key, Object value) {
-    }
+    public void putObject(Object key, Object value) {}
 
     @Override
     public Object getObject(Object key) {
@@ -27,8 +26,7 @@ public class MyChacher implements Cache, InitializingObject {
     }
 
     @Override
-    public void clear() {
-    }
+    public void clear() {}
 
     @Override
     public int getSize() {
@@ -44,7 +42,6 @@ public class MyChacher implements Cache, InitializingObject {
      * 初始化，设置完属性后调用。
      * */
     @Override
-    public void initialize() throws Exception {
-    }
+    public void initialize() throws Exception {}
 
 }

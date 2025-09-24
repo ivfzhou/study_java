@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!-- 指定属性值，resource 从类路径引入 properties 文件，url 从指定路径引入。优先级代码方法最高，外部文件引入次之，最后是元素体内编写的。 -->
+    <!-- 指定属性值，resource 从类路径引入 properties 文件，url 从指定路径引入。
+         优先级：代码方法最高，外部文件引入次之，最后是元素体内编写的。
+    -->
     <properties resource="mybatis-properties.properties"> <!-- url="" -->
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
         <!-- 启用默认值特性。 -->
@@ -47,23 +49,27 @@
         <!--<package name="cn.ivfzhou.java.mybatis.typehandler"/>-->
     </typeHandlers>
 
-    <!--<objectFactory type="MyObjectFactory">
+    <!--
+    <objectFactory type="cn.ivfzhou.java.mybatis.beanfactory.MyObjectFactory">
         <property name="pname" value="pvalue"/>
-    </objectFactory>-->
+    </objectFactory>
+    -->
 
-    <!--<plugins>
-        <plugin interceptor="MyPlugin">
+    <!--
+    <plugins>
+        <plugin interceptor="cn.ivfzhou.java.mybatis.interceptor.MyPlugin">
             <property name="pname" value="pvalue"/>
         </plugin>
-    </plugins>-->
+    </plugins>
+    -->
 
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"> <!-- MANAGED JdbcTransactionFactory ManagedTransactionFactory -->
                 <property name="closeConnection" value="false"/>
             </transactionManager>
-            <dataSource
-                    type="cn.ivfzhou.java.mybatis.transaction.MyDataSourceFactory"><!-- POOLED UNPOOLED JNDI UnpooledDataSourceFactory -->
+            <dataSource type="cn.ivfzhou.java.mybatis.transaction.MyDataSourceFactory">
+                <!-- POOLED UNPOOLED JNDI UnpooledDataSourceFactory -->
                 <!-- 如果 ${driver} 没找到则为冒号后部分值。需要配置开启这个特性。-->
                 <property name="driver" value="${driver?:com.mysql.jdbc.Driver}"/>
                 <property name="url" value="${url}"/>
@@ -91,15 +97,17 @@
         <property name="MySQL" value="mysql"/>
     </databaseIdProvider>
 
-    <!--<databaseIdProvider type="MyDatabaseIDProvider">
+    <!--
+    <databaseIdProvider type="cn.ivfzhou.java.mybatis.databaseidprovider.MyDatabaseIDProvider">
         <property name="MySQL" value="mysql"/>
-    </databaseIdProvider>-->
+    </databaseIdProvider>
+    -->
 
     <mappers>
-        <mapper resource="mybatis-mapper-config.xml"/>
+        <!--<mapper resource="mybatis-mapper-config.xml"/>-->
         <!--<mapper class="BlogMapper"/>-->
-        <!--<mapper url="file:///"/>
-        <package name="cn.ivfzhou.java.mybatis.mapper"/>-->
+        <!--<mapper url="file:///"/>-->
+        <package name="cn.ivfzhou.java.mybatis.mapper"/>
     </mappers>
 
 </configuration>
