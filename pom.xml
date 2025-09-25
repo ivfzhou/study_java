@@ -37,9 +37,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>21</java.version>
 
-        <spring.version>7.0.0-M9</spring.version>
-        <springboot.version>4.0.0-M3</springboot.version>
-        <springcloud.version>2025.1.0-M2</springcloud.version>
+        <spring.version>6.2.11</spring.version>
+        <springboot.version>3.5.6</springboot.version>
+        <springcloud.version>2025.0.0</springcloud.version>
         <alibabacloud.version>2023.0.3.3</alibabacloud.version>
 
         <nacos.spring.version>2.1.1</nacos.spring.version>
@@ -64,7 +64,7 @@
         <zookeeper.version>3.9.4</zookeeper.version>
         <dubbo.version>3.3.5</dubbo.version>
         <rocketmq.version>5.3.3</rocketmq.version>
-        <junit.version>6.0.0-M2</junit.version>
+        <junit.version>5.13.4</junit.version>
         <fstdfs.version>1.27.2</fstdfs.version>
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.18</logback.version>

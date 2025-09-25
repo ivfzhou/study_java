@@ -15,7 +15,7 @@ public class MyService {
 
     @Transactional
     public String doSomething() {
-        Object execute = redisTemplate.execute((RedisCallback<String>) RedisConnectionCommands::ping);
+        var execute = redisTemplate.execute((RedisCallback<String>) RedisConnectionCommands::ping);
         return execute.toString();
     }
 
