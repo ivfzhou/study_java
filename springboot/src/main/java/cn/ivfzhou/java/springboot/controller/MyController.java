@@ -18,7 +18,7 @@ public class MyController {
 
     @RequestMapping("/getMsg")
     public String get() {
-        System.out.println(myService.doSomething());
+        System.out.println(myService.pingRedis());
         return msg;
     }
 
