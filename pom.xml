@@ -52,8 +52,6 @@
         <dubbo.springboot.version>3.3.5</dubbo.springboot.version>
         <gateway.springboot.version>4.3.1</gateway.springboot.version>
 
-        <netflix.springcloud.version>2.2.10.RELEASE</netflix.springcloud.version>
-
         <fastjson.version>2.0.58</fastjson.version>
         <mybatis.version>3.5.19</mybatis.version>
         <druid.version>1.2.27</druid.version>
@@ -163,27 +161,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-gateway</artifactId>
                 <version>${gateway.springboot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-                <version>${netflix.springcloud.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-                <version>${netflix.springcloud.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-                <version>${netflix.springcloud.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-                <version>${netflix.springcloud.version}</version>
             </dependency>
 
             <dependency>

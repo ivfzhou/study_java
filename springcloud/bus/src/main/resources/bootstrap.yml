@@ -5,6 +5,6 @@ spring:
     name: bus
   cloud:
     config:
-      uri: http://127.0.0.1:40000/
+      uri: http://ivfzhoudebian:40000/
       profile: dev
       name: bus

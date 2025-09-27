@@ -1,0 +1,24 @@
+server:
+  port: 30001
+spring:
+  application:
+    name: feign
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://ivfzhoudebian:10001/eureka,http://ivfzhoudebian:10002/eureka,http://ivfzhoudebian:10003/eureka
+feign: #配置 feign 超时后，ribbon 的配置会失效。
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 5000
+        MaxAutoRetries: 0
+        MaxAutoRetriesNextServer: 0
+      service: # 指定服务配置。
+        connectTimeout: 1000
+        readTimeout: 1000
+        MaxAutoRetries: 0
+        MaxAutoRetriesNextServer: 0

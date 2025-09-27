@@ -11,4 +11,4 @@ eureka:
     registerWithEureka: false
     fetchRegistry: true
     service-url:
-      defaultZone: http://127.0.0.1:10001/eureka/,http://127.0.0.1:10003/eureka/
+      defaultZone: http://ivfzhoudebian:10001/eureka,http://ivfzhoudebian:10003/eureka
