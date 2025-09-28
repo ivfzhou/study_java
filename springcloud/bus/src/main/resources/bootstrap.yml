@@ -1,10 +1,10 @@
 server:
-  port: 30001
+  port: 10010
 spring:
   application:
     name: bus
   cloud:
     config:
-      uri: http://ivfzhoudebian:40000/
+      uri: http://ivfzhoudebian:10005/
       profile: dev
       name: bus

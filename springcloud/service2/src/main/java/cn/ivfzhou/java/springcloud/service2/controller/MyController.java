@@ -16,8 +16,8 @@ public class MyController {
     @RequestMapping("/get/{param}")
     @ResponseBody
     public String run(@PathVariable("param") String param, @RequestBody String body) {
-        System.out.println("MyController.run");
-        return param + port;
+        System.out.println("MyController.run " + body + " " + param);
+        return "" + port;
     }
 
 }

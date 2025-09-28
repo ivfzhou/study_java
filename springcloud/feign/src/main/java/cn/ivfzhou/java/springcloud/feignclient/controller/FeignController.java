@@ -16,17 +16,17 @@ public class FeignController {
         this.iFeignService = iFeignService;
     }
 
-    @RequestMapping("/feign")
+    @RequestMapping("/test")
     @ResponseBody
     public String run() {
         System.out.println("FeignController.run");
         return iFeignService.run("feign", "hello");
     }
 
-    @RequestMapping("/test_limit")
+    @RequestMapping("/ping")
     @ResponseBody
     public String limit() {
-        return "yes";
+        return "pong";
     }
 
 }

@@ -1,5 +1,5 @@
 server:
-  port: 40000
+  port: 10005
 spring:
   application:
     name: config
@@ -13,9 +13,9 @@ spring:
   profiles:
     active: native
   rabbitmq: # 连接 rabbitmq 作为消息总线的消息中间件。
-    host: ivfzhoudebian
-    username: guest
-    password: guest
+    host: ivfzhoudockerrabbitmq
+    username: ivfzhou
+    password: 123456
     port: 5672
     virtual-host: /springcloud
 management: # 暴露所有节点（包括 bus-refresh）。curl -X GET http://ivfzhoudebian:40000/actuator/bus-refresh/bus:30001

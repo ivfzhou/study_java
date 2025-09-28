@@ -17,8 +17,8 @@ public class GatewayApplication {
 
     @Bean(name = "remoteAddrKeyResolver")
     public KeyResolver getKeyResolver() {
-        // return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName()); // 根据IP限流。
-        return exchange -> Mono.just(exchange.getRequest().getPath().value()); // 根据URI限流。
+        // return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName()); // 根据 IP 限流。
+        return exchange -> Mono.just(exchange.getRequest().getPath().value()); // 根据 URI 限流。
     }
 
 }

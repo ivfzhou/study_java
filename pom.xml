@@ -159,7 +159,7 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
                 <version>${gateway.springboot.version}</version>
             </dependency>
 

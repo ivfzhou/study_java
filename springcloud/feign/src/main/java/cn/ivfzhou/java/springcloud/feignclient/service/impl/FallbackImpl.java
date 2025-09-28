@@ -9,6 +9,7 @@ public class FallbackImpl implements IFeignService {
 
     @Override
     public String run(String params, String body) {
+        System.out.println("FallbackImpl#run " + params + " " + body);
         return "降级了";
     }
 

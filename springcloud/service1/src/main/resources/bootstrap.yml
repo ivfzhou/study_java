@@ -1,11 +1,11 @@
 server:
-  port: 20001
+  port: 10006
 spring:
   application:
     name: service
   cloud:
     config:
-      uri: http://ivfzhoudebian:40000/
+      uri: http://ivfzhoudebian:10005/
       profile: dev
       #label: branch
       name: server
