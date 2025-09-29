@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MyController {
 
-    @CrossOrigin("http://ivfzhou-ubuntu:8080")
+    @CrossOrigin("http://ivfzhoudebian:8080")
     @RequestMapping("/get")
     public String get() {
         System.out.println("get");

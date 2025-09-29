@@ -4,11 +4,11 @@
        xmlns:conext="http://www.springframework.org/schema/context"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       https://springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+       https://springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 开启注解扫描 -->
     <conext:component-scan base-package="cn.ivfzhou.java.springmvc"/>
@@ -44,8 +44,8 @@
     <mvc:cors>
         <mvc:mapping path="/"
                      allowed-origins="*"
-                     allowed-methods="POST, GET, OPTIONS, DELETE, PUT,PATCH"
-                     allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+                     allowed-methods="POST,GET,OPTIONS,DELETE,PUT,PATCH"
+                     allowed-headers="Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-With"
                      allow-credentials="true"/>
     </mvc:cors>
 
