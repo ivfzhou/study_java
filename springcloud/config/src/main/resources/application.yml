@@ -18,7 +18,7 @@ spring:
     password: 123456
     port: 5672
     virtual-host: /springcloud
-management: # 暴露所有节点（包括 bus-refresh）。curl -X GET http://ivfzhoudebian:40000/actuator/bus-refresh/bus:30001
+management: # 暴露所有节点（包括 busrefresh）。
   endpoints:
     web:
       exposure:
