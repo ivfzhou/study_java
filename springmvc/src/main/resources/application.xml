@@ -31,22 +31,25 @@
     <!-- 拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/get*"/>
-            <mvc:mapping path="/get/**"/>
-            <mvc:mapping path="/get"/>
+            <mvc:mapping path="/path*"/>
+            <mvc:mapping path="/path/**"/>
+            <mvc:mapping path="/path"/>
             <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/post"/>
+            <mvc:exclude-mapping path="/excludePath"/>
             <bean class="cn.ivfzhou.java.springmvc.interceptor.MyInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
     <!-- 允许跨域请求 -->
+    <!-- allowed-origins="*" -->
+    <!--
     <mvc:cors>
         <mvc:mapping path="/"
-                     allowed-origins="*"
+                     allowed-origins="ivfzhoudebian"
                      allowed-methods="POST,GET,OPTIONS,DELETE,PUT,PATCH"
                      allowed-headers="Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-With"
                      allow-credentials="true"/>
     </mvc:cors>
+    -->
 
 </beans>

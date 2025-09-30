@@ -16,6 +16,8 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 @WebFilter(value = "/", servletNames = "*")
 public class LogFilter implements Filter {
 
+    private int count;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         var req = new ContentCachingRequestWrapper((HttpServletRequest) request);
@@ -23,8 +25,9 @@ public class LogFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         rsp.setCharacterEncoding("UTF-8");
         chain.doFilter(req, rsp);
-        System.out.println("请求体 " + new String(req.getContentAsByteArray()));
-        System.out.println("请求结果 " + new String(rsp.getContentAsByteArray()));
+        count++;
+        System.out.println(count + ". 请求体 " + new String(req.getContentAsByteArray()));
+        System.out.println(count + ". 请求结果 " + new String(rsp.getContentAsByteArray()));
         rsp.copyBodyToResponse();
     }
 

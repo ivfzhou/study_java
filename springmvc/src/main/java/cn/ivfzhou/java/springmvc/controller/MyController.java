@@ -9,33 +9,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MyController {
 
-    @CrossOrigin("http://ivfzhoudebian:8080")
-    @RequestMapping("/get")
-    public String get() {
-        System.out.println("get");
+    @RequestMapping("/toRedirectPage")
+    public String toRedirectPage() {
+        System.out.println("toRedirectPage");
         return "redirect:redirect";
-    }
-
-    @RequestMapping("/post")
-    public String post() {
-        System.out.println("post");
-        return "forward:forward";
     }
 
     @RequestMapping("/redirect")
     public String redirect() {
+        System.out.println("toRedirectPage");
         return "redirect";
     }
 
-    @RequestMapping("/forward")
-    public String forward() {
-        return "forward";
+    @RequestMapping("/toForwardPage")
+    public String toForwardPage() {
+        return "forward:forward.html";
+    }
+
+    @CrossOrigin("http://otherhost:8080")
+    @ResponseBody
+    @RequestMapping("/allowCross")
+    public void allowCross() {
+        System.out.println("allowCross");
     }
 
     @ResponseBody
-    @RequestMapping("/body")
-    public String body(@RequestBody String body) {
-        return "hello world" + body;
+    @RequestMapping("/ping")
+    public String ping(@RequestBody String body) {
+        return "ping " + body;
     }
 
 }
