@@ -3,13 +3,15 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>dubbo.springboot</artifactId>
-        <groupId>cn.ivfzhou</groupId>
+        <groupId>cn.ivfzhou.java.dubbo</groupId>
+        <artifactId>springboot</artifactId>
         <version>1.0.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>dubbo.springboot.provider</artifactId>
+    <groupId>cn.ivfzhou.dubbo.springboot</groupId>
+    <artifactId>provider</artifactId>
+    <version>1.0.0</version>
     <name>provider</name>
 
     <dependencies>
@@ -19,8 +21,8 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.ivfzhou</groupId>
-            <artifactId>dubbo.springboot.protocol</artifactId>
+            <groupId>cn.ivfzhou.java.dubbo.springboot</groupId>
+            <artifactId>protocol</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
