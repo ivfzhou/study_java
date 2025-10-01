@@ -1,77 +1,85 @@
 package cn.ivfzhou.java.zookeeper;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.recipes.cache.NodeCache;
+import org.apache.curator.framework.recipes.cache.CuratorCache;
+import org.apache.curator.framework.recipes.cache.CuratorCacheListener;
 import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.data.Stat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ZooKeeperPoolTest {
 
-    CuratorFramework cf = ZooKeeperPool.cf();
+    private final CuratorFramework cf = ZooKeeperUtil.cf();
 
-    // 获取子节点
+    private final String path = "/test";
+
+    // 获取子节点。
     @Test
     public void testGetChildren() throws Exception {
-        List<String> strings = cf.getChildren().forPath("/");
-        for (String string : strings) {
-            System.out.println(string);
+        var elems = cf.getChildren().forPath(path);
+        for (var v : elems) {
+            System.out.println(v);
         }
     }
 
-    // 获取节点数据
+    // 获取节点数据。
     @Test
     public void testGetData() throws Exception {
-        byte[] bytes = cf.getData().forPath("/test_path");
+        byte[] bytes = cf.getData().forPath(path);
         System.out.println(new String(bytes, StandardCharsets.UTF_8));
     }
 
-    // 添加
+    // 添加。
     @Test
     public void testCreate() throws Exception {
-        cf.create().withMode(CreateMode.PERSISTENT).forPath("/test_path", "test_data".getBytes());
+        System.out.println(cf.create().withMode(CreateMode.PERSISTENT).forPath(path, "data你".getBytes()));
     }
 
-    // 修改
+    // 修改。
     @Test
     public void testUpdate() throws Exception {
-        cf.setData().forPath("/test_path", "test_data".getBytes());
+        System.out.println(cf.setData().forPath(path, "data好".getBytes()));
     }
 
-    // 删除
+    // 删除。
     @Test
     public void testDelete() throws Exception {
-        cf.delete().deletingChildrenIfNeeded().forPath("/test_path");
+        System.out.println(cf.delete().deletingChildrenIfNeeded().forPath(path));
     }
 
-    // 查看znode的状态
+    // 查看 znode 的状态。
     @Test
     public void testStat() throws Exception {
-        Stat stat = cf.checkExists().forPath("/test_path");
-        System.out.println(stat);
+        System.out.println(cf.checkExists().forPath(path));
     }
 
-    // 监听通知机制
+    // 监听通知机制。
     @Test
     public void testListen() throws Exception {
-        // 1. 创建NodeCache对象，指定要监听的znode
-        NodeCache nodeCache = new NodeCache(cf, "/test_path");
-        nodeCache.start();
-        // 2. 添加一个监听器
-        nodeCache.getListenable().addListener(() -> {
-            byte[] data = nodeCache.getCurrentData().getData();
-            Stat stat = nodeCache.getCurrentData().getStat();
-            String path = nodeCache.getCurrentData().getPath();
-            System.out.println("监听的节点是：" + path);
-            System.out.println("节点现在的数据是：" + new String(data, StandardCharsets.UTF_8));
-            System.out.println("节点状态是：" + stat);
-        });
+        // 1. 创建 CuratorCache 对象
+        var cache = CuratorCache.build(cf, path);
+
+        // 2. 创建并注册监听器
+        cache.listenable().addListener(CuratorCacheListener.builder()
+                .forNodeCache(() -> {
+                    var data = cache.get(path).orElse(null);
+                    if (data != null) {
+                        System.out.println("监听的节点是：" + data.getPath());
+                        System.out.println("节点现在的数据是：" + new String(data.getData(), StandardCharsets.UTF_8));
+                        System.out.println("节点状态是：" + data.getStat());
+                    } else {
+                        System.out.println("节点已删除: " + path);
+                    }
+                })
+                .build());
+
+        // 3. 启动缓存
+        cache.start();
+
         System.out.println("开始监听！！");
-        // 3. System.in.read();
-        System.in.read();
+
+        System.in.read(); // 阻塞等待
     }
 
 }
