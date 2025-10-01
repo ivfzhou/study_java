@@ -13,10 +13,10 @@ public class UserController {
     @DubboReference
     private IUserService userService;
 
-    @GetMapping("/get")
+    @GetMapping("/ping")
     @ResponseBody
-    public String get() {
-        return userService.get();
+    public String ping() {
+        return userService.ping();
     }
 
 }

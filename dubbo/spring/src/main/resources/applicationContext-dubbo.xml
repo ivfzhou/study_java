@@ -7,11 +7,13 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <!-- 设置dubbo的名称 -->
+    <!-- 设置 dubbo 的名称 -->
     <dubbo:application name="dubbo-provide"/>
+
     <!-- 指定注册的服务中心 -->
     <dubbo:registry protocol="zookeeper"
                     address="192.168.226.128:2181,192.168.226.128:2182,192.168.226.128:2183"/>
+
     <!-- 暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880"/>
 

@@ -17,7 +17,6 @@
     <modules>
         <module>spring</module>
         <module>springboot</module>
-        <module>common</module>
     </modules>
 
 </project>

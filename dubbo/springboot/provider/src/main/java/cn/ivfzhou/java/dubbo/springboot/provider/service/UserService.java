@@ -9,9 +9,9 @@ import cn.ivfzhou.java.dubbo.springboot.protocol.IUserService;
 @Service
 public class UserService implements IUserService {
 
-    public String get() {
+    public String ping() {
         System.out.println("OK");
-        return "OK";
+        return "pong";
     }
 
 }
