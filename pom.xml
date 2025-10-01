@@ -72,6 +72,8 @@
         <jakarta.jsp.version>4.0.0</jakarta.jsp.version>
         <jakarta.jstl.version>3.0.1</jakarta.jstl.version>
         <glassfish.version>3.0.1</glassfish.version>
+        <jackson.version>2.20.0</jackson.version>
+        <jaxb.version>4.0.6</jaxb.version>
 
         <my.pom.filter.value>my parent pom filter value</my.pom.filter.value>
     </properties>
@@ -293,6 +295,16 @@
                 <groupId>org.glassfish.web</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl</artifactId>
                 <version>${glassfish.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
