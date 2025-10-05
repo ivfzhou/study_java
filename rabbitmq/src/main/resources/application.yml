@@ -1,7 +1,7 @@
 spring:
   rabbitmq:
-    host: ivfzhou-ubuntu
+    host: ivfzhoudockerrabbitmq
     port: 5672
-    username: guest
-    password: guest
-    virtual-host: /
+    username: ivfzhou
+    password: 123456
+    virtual-host: /java

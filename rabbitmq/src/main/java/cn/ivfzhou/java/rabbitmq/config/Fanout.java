@@ -1,4 +1,4 @@
-package cn.ivfzhou.java.rabbitmq;
+package cn.ivfzhou.java.rabbitmq.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -32,7 +32,7 @@ public class Fanout {
     }
 
     @Bean
-    public Binding bindFanoutQueue2(Queue fanoutQueue2, FanoutExchange fanoutExchange) {
+    public Binding bindFanoutQueue2(@Qualifier("fanoutQueue2") Queue fanoutQueue2, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(fanoutQueue2).to(fanoutExchange);
     }
 

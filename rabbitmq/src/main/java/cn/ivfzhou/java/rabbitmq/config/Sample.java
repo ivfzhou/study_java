@@ -1,4 +1,4 @@
-package cn.ivfzhou.java.rabbitmq;
+package cn.ivfzhou.java.rabbitmq.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

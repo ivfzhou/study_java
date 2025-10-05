@@ -1,9 +1,10 @@
-package cn.ivfzhou.java.rabbitmq;
+package cn.ivfzhou.java.rabbitmq.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,12 +27,12 @@ public class Direct {
     }
 
     @Bean
-    public Binding bindDirectQueue1(Queue directQueue1, DirectExchange directExchange) {
+    public Binding bindDirectQueue1(@Qualifier("directQueue1") Queue directQueue1, DirectExchange directExchange) {
         return BindingBuilder.bind(directQueue1).to(directExchange).withQueueName();
     }
 
     @Bean
-    public Binding bindDirectQueue2(Queue directQueue2, DirectExchange directExchange) {
+    public Binding bindDirectQueue2(@Qualifier("directQueue2") Queue directQueue2, DirectExchange directExchange) {
         return BindingBuilder.bind(directQueue2).to(directExchange).withQueueName();
     }
 

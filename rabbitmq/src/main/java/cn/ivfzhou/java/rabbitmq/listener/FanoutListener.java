@@ -1,4 +1,4 @@
-package cn.ivfzhou.java.rabbitmq;
+package cn.ivfzhou.java.rabbitmq.listener;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
