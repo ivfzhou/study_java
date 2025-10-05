@@ -15,7 +15,7 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.message.MessageQueue;
-import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+import org.apache.rocketmq.remoting.protocol.heartbeat.MessageModel;
 
 public class Consumer {
 
@@ -29,7 +29,8 @@ public class Consumer {
         consumer.subscribe("topic", "*");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 msgs.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -44,7 +45,8 @@ public class Consumer {
         consumer.setMessageModel(MessageModel.CLUSTERING);
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 msgs.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -59,7 +61,8 @@ public class Consumer {
         consumer.setMessageModel(MessageModel.BROADCASTING);
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 msgs.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -73,7 +76,8 @@ public class Consumer {
         consumer.subscribe("topic", "*");
         consumer.registerMessageListener(new MessageListenerOrderly() {
             @Override
-            public ConsumeOrderlyStatus consumeMessage(List<MessageExt> list, ConsumeOrderlyContext consumeOrderlyContext) {
+            public ConsumeOrderlyStatus consumeMessage(List<MessageExt> list,
+                                                       ConsumeOrderlyContext consumeOrderlyContext) {
                 list.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeOrderlyStatus.SUCCESS;
             }
@@ -87,7 +91,8 @@ public class Consumer {
         consumer.subscribe("topic", "tag||tags||tag1");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 msgs.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -101,7 +106,8 @@ public class Consumer {
         consumer.subscribe("topic", MessageSelector.bySql("TAGS = 'tag' and name in ('value1', 'value2')"));
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 msgs.forEach(v -> System.out.println(new String(v.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }

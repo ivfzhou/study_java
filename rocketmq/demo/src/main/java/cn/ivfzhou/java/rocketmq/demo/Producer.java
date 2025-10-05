@@ -23,11 +23,13 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 
 public class Producer {
 
-    public static void main(String[] args) throws InterruptedException, RemotingException, UnsupportedEncodingException, MQClientException, MQBrokerException {
+    public static void main(String[] args) throws InterruptedException, RemotingException,
+            UnsupportedEncodingException, MQClientException, MQBrokerException {
         sendSync();
     }
 
-    static void sendSync() throws MQClientException, MQBrokerException, RemotingException, InterruptedException, UnsupportedEncodingException {
+    static void sendSync() throws MQClientException, MQBrokerException, RemotingException,
+            InterruptedException, UnsupportedEncodingException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -39,7 +41,8 @@ public class Producer {
         producer.shutdown();
     }
 
-    static void sendAsync() throws MQClientException, RemotingException, InterruptedException, UnsupportedEncodingException {
+    static void sendAsync() throws MQClientException, RemotingException, InterruptedException,
+            UnsupportedEncodingException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -61,7 +64,8 @@ public class Producer {
         //producer.shutdown();
     }
 
-    static void sendOneway() throws MQClientException, RemotingException, InterruptedException, UnsupportedEncodingException {
+    static void sendOneway() throws MQClientException, RemotingException, InterruptedException,
+            UnsupportedEncodingException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -73,7 +77,8 @@ public class Producer {
         producer.shutdown();
     }
 
-    static void sendOrder() throws MQClientException, RemotingException, InterruptedException, UnsupportedEncodingException, MQBrokerException {
+    static void sendOrder() throws MQClientException, RemotingException, InterruptedException,
+            UnsupportedEncodingException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -91,7 +96,8 @@ public class Producer {
         producer.shutdown();
     }
 
-    static void sendDelay() throws MQClientException, RemotingException, InterruptedException, UnsupportedEncodingException, MQBrokerException {
+    static void sendDelay() throws MQClientException, RemotingException, InterruptedException,
+            UnsupportedEncodingException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -104,7 +110,8 @@ public class Producer {
         producer.shutdown();
     }
 
-    static void sendBatch() throws MQClientException, RemotingException, InterruptedException, UnsupportedEncodingException, MQBrokerException {
+    static void sendBatch() throws MQClientException, RemotingException, InterruptedException,
+            UnsupportedEncodingException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
@@ -161,7 +168,8 @@ public class Producer {
         //producer.shutdown();
     }
 
-    static void sendUserProp() throws MQClientException, MQBrokerException, RemotingException, InterruptedException, UnsupportedEncodingException {
+    static void sendUserProp() throws MQClientException, MQBrokerException, RemotingException,
+            InterruptedException, UnsupportedEncodingException {
         DefaultMQProducer producer = new DefaultMQProducer("default");
         producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
         producer.start();
