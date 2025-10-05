@@ -1,4 +1,4 @@
-package cn.ivfzhou.java.nacos.spring;
+package cn.ivfzhou.java.nacos.spring.controller;
 
 import java.util.List;
 

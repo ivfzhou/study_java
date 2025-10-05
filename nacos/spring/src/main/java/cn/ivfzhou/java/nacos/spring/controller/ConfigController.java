@@ -1,4 +1,4 @@
-package cn.ivfzhou.java.nacos.spring;
+package cn.ivfzhou.java.nacos.spring.controller;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
 import com.alibaba.nacos.api.config.ConfigService;
@@ -16,13 +16,13 @@ public class ConfigController {
     @NacosInjected
     private ConfigService configService;
 
-    @NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
-    private boolean useLocalCache;
+    @NacosValue(value = "${key.key1}", autoRefreshed = true)
+    private String data;
 
     @RequestMapping(value = "/get")
     @ResponseBody
-    public boolean get() {
-        return useLocalCache;
+    public String get() {
+        return data;
     }
 
     @RequestMapping(value = "/getByDataId/{dataId}")

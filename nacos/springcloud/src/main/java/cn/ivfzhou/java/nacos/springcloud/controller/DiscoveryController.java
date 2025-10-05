@@ -1,8 +1,8 @@
 package cn.ivfzhou.java.nacos.springcloud.controller;
 
 import java.util.List;
-import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/discovery")
 public class DiscoveryController {
 
-    @Resource
+    @Autowired
     private DiscoveryClient discoveryClient;
 
     @RequestMapping(value = "/get/{serviceName}")
