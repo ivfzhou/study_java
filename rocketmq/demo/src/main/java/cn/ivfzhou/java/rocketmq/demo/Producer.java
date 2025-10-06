@@ -14,28 +14,31 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
-import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
-public class Producer {
+public final class Producer {
 
-    public static void main(String[] args) throws InterruptedException, RemotingException,
-            UnsupportedEncodingException, MQClientException, MQBrokerException {
-        sendSync();
+    private static final String NAME_SERVER_ADDR =
+            "ivfzhoudockerrocketmqnameserver0:9876;ivfzhoudockerrocketmqnameserver1:9876";
+
+    public static final String GROUP = "default";
+
+    public static void main(String[] args) throws Exception {
+        sendOneway();
     }
 
     static void sendSync() throws MQClientException, MQBrokerException, RemotingException,
             InterruptedException, UnsupportedEncodingException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag1", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            SendResult result = producer.send(message);
+            var message = new Message("topic", "tag1", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var result = producer.send(message);
             System.out.println(result);
         }
         producer.shutdown();
@@ -43,12 +46,12 @@ public class Producer {
 
     static void sendAsync() throws MQClientException, RemotingException, InterruptedException,
             UnsupportedEncodingException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         producer.setRetryTimesWhenSendAsyncFailed(0);
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             producer.send(message, new SendCallback() {
                 @Override
                 public void onSuccess(SendResult sendResult) {
@@ -61,17 +64,17 @@ public class Producer {
                 }
             });
         }
-        //producer.shutdown();
+        // producer.shutdown();
     }
 
     static void sendOneway() throws MQClientException, RemotingException, InterruptedException,
             UnsupportedEncodingException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         producer.setRetryTimesWhenSendAsyncFailed(0);
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             producer.sendOneway(message);
         }
         producer.shutdown();
@@ -79,12 +82,12 @@ public class Producer {
 
     static void sendOrder() throws MQClientException, RemotingException, InterruptedException,
             UnsupportedEncodingException, MQBrokerException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            SendResult result = producer.send(message, new MessageQueueSelector() {
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var result = producer.send(message, new MessageQueueSelector() {
                 @Override
                 public MessageQueue select(List<MessageQueue> list, Message message, Object o) {
                     int index = (Integer) o;
@@ -98,13 +101,13 @@ public class Producer {
 
     static void sendDelay() throws MQClientException, RemotingException, InterruptedException,
             UnsupportedEncodingException, MQBrokerException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             message.setDelayTimeLevel(2);
-            SendResult result = producer.send(message);
+            var result = producer.send(message);
             System.out.println(result);
         }
         producer.shutdown();
@@ -112,22 +115,21 @@ public class Producer {
 
     static void sendBatch() throws MQClientException, RemotingException, InterruptedException,
             UnsupportedEncodingException, MQBrokerException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        var producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
-        String topic = "topic";
-        List<Message> msgs = new ArrayList<>();
+        var msgs = new ArrayList<Message>();
         for (int i = 0; i < 5; i++) {
-            Message message = new Message(topic, "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             msgs.add(message);
         }
-        SendResult result = producer.send(msgs);
+        var result = producer.send(msgs);
         System.out.println(result);
         producer.shutdown();
     }
 
     static void sendTransaction() throws MQClientException, UnsupportedEncodingException {
-        TransactionMQProducer producer = new TransactionMQProducer("default");
+        var producer = new TransactionMQProducer(GROUP);
         producer.setTransactionListener(new TransactionListener() {
             private final ConcurrentHashMap<String, Integer> localTrans = new ConcurrentHashMap<>();
 
@@ -156,27 +158,27 @@ public class Producer {
                 return LocalTransactionState.COMMIT_MESSAGE;
             }
         });
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         for (
                 int i = 0;
                 i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            TransactionSendResult result = producer.sendMessageInTransaction(message, i);
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var result = producer.sendMessageInTransaction(message, i);
             System.out.println(result);
         }
-        //producer.shutdown();
+        // producer.shutdown();
     }
 
     static void sendUserProp() throws MQClientException, MQBrokerException, RemotingException,
             InterruptedException, UnsupportedEncodingException {
-        DefaultMQProducer producer = new DefaultMQProducer("default");
-        producer.setNamesrvAddr("192.168.14.199:19876;192.168.14.199:29876");
+        DefaultMQProducer producer = new DefaultMQProducer(GROUP);
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
         for (int i = 0; i < 5; i++) {
-            Message message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            var message = new Message("topic", "tag", "key", ("body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             message.putUserProperty("name", "value" + i);
-            SendResult result = producer.send(message);
+            var result = producer.send(message);
             System.out.println(result);
         }
         producer.shutdown();
