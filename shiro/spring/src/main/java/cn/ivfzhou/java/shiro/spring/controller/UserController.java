@@ -6,7 +6,6 @@ import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.authz.annotation.RequiresUser;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-    @RequiresRoles("admin")  // 拥有admin角色才能访问该方法。
-    @RequiresPermissions("user:update") // 拥有user:update权限才能方法该方法
+    @RequiresRoles("admin")  // 拥有 admin 角色才能访问该方法。
+    @RequiresPermissions("user:update") // 拥有 user:update 权限才能方法该方法。
     @RequestMapping("/updateUser")
     @ResponseBody
     public String updateUser() {
@@ -25,19 +24,19 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    @RequiresGuest // 游客放行
+    @RequiresGuest // 游客放行。
     @ResponseBody
     public String login(String username, String password) {
         System.out.println("login");
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        var subject = SecurityUtils.getSubject();
+        var token = new UsernamePasswordToken(username, password);
         token.setRememberMe(true);
         subject.login(token);
         return "yes";
     }
 
     @RequestMapping("/info")
-    @RequiresUser // 登录的放行
+    @RequiresUser // 登录的放行。
     public ModelAndView info() {
         System.out.println("info");
         return new ModelAndView("index.jsp");

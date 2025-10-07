@@ -22,4 +22,11 @@ public class User {
         this.passwd = passwd;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", passwd='" + passwd + '\'' +
+                '}';
+    }
 }

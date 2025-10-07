@@ -2,7 +2,7 @@
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Shiro</title>
     <meta charset="UTF-8"/>
 </head>
 <body>

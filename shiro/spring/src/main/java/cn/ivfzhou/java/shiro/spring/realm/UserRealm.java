@@ -20,10 +20,10 @@ public class UserRealm extends AuthorizingRealm {
     // 授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        User u = (User) principals.getPrimaryPrincipal();
+        var u = (User) principals.getPrimaryPrincipal();
         System.out.println("UserRealm.doGetAuthorizationInfo: " + u.getName() + "-" + u.getPasswd());
-        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        HashSet<String> roles = new HashSet<>();
+        var authorizationInfo = new SimpleAuthorizationInfo();
+        var roles = new HashSet<String>();
         roles.add("someone");
         authorizationInfo.setRoles(roles);
         authorizationInfo.addStringPermission("query");
@@ -33,9 +33,9 @@ public class UserRealm extends AuthorizingRealm {
     // 鉴权
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        Object principal = token.getPrincipal();
+        var principal = token.getPrincipal();
         System.out.println("UserRealm.doGetAuthenticationInfo: " + principal);
-        User u = new User();
+        var u = new User();
         u.setName("ivfzhou");
         u.setPasswd("123456");
         return new SimpleAuthenticationInfo(u, "123456", "ivfzhou");
@@ -48,9 +48,9 @@ public class UserRealm extends AuthorizingRealm {
         setAuthorizationCachingEnabled(true);
     }
 
-    // 该方法定义在Realme中调用父类的方法清空缓存
+    // 该方法定义在 Realme 中调用父类的方法清空缓存
     public void clearCache() {
-        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        var principals = SecurityUtils.getSubject().getPrincipals();
         super.clearCache(principals);
     }
 
